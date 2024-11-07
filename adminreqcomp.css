@@ -1,0 +1,75 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #d32f2f;
+    margin: 0;
+}
+
+.header h2, h3 {
+    margin: 5px 0;
+    color: #444;
+}
+
+.summary-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.summary-box {
+    width: 250px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.summary-box h4 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+.summary-box p {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+}
+
+#approved-box {
+    border-left: 5px solid #4caf50; /* Green color for approved */
+}
+
+#rejected-box {
+    border-left: 5px solid #f44336; /* Red color for rejected */
+}
+
+.button-container {
+    text-align: center;
+}
+
+button {
+    background-color: #1976d2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #155a9e;
+}

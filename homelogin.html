@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Login</title>
+    <link rel="stylesheet" href="homelogin.css">
+    <script>
+        function showLoginForm() {
+            const role = document.querySelector('input[name="role"]:checked').value;
+            const studentForm = document.getElementById("studentForm");
+            const facultyForm = document.getElementById("facultyForm");
+            if (role === "student") {
+                studentForm.style.display = "flex";
+                facultyForm.style.display = "none";
+            } else {
+                studentForm.style.display = "none";
+                facultyForm.style.display = "flex";
+            }
+        }
+    </script>
+    <!-- Add Firebase SDKs in the head section of your HTML file -->
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="login.js"></script>
+    <script type="module" src="faclogin.js"></script>
+
+</head>
+<body>
+    <div class="header">
+        <h1>NATIONAL FORENSIC SCIENCE UNIVERSITY</h1>
+        <h2>Dharwad Campus, Karnataka 580011</h2>
+    </div>
+
+    <div class="form-container">
+        <h3>Login</h3>
+        <form action="submit" method="post">
+            <!-- Role Selection -->
+            <div class="role-selection">
+                <label>Login as:</label>
+                <input type="radio" name="role" value="student" onclick="showLoginForm()" required>
+                <label for="student">Student</label>
+                <input type="radio" name="role" value="faculty" onclick="showLoginForm()" required>
+                <label for="faculty">Faculty</label>
+            </div>
+
+            <!-- Student Form -->
+            <div id="studentForm" class="login-form" style="display: none;">
+                <label for="email">Email id:</label>
+                <input type="text" id="email1" name="email" placeholder="Enter your Email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password1" name="password" required>
+                <button type="button" id="rand">Login</button>
+            </div>
+
+            <!-- Faculty Form -->
+            <div id="facultyForm" class="login-form" style="display: none;">
+                <label for="facultyMail">Faculty Mail id:</label>
+                <input type="text" id="facultyMail" name="facultyMail" placeholder="Enter Faculty Mail id" required>
+
+                <label for="facultyPassword">Password:</label>
+                <input type="password" id="facultyPassword" name="facultyPassword" required>
+                <button type="button" id="rand1">Login</button>
+            </div>
+
+            <!-- Submit Button -->
+            
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Requests Summary</title>
+    <link rel="stylesheet" href="adminreqcomp.css">
+    <script>
+        window.onload = function () {
+            const approvedCount = localStorage.getItem('approvedCount') || 0;
+            const rejectedCount = localStorage.getItem('rejectedCount') || 0;
+
+            document.getElementById('approvedRequests').textContent = approvedCount;
+            document.getElementById('rejectedRequests').textContent = rejectedCount;
+        };
+    </script>
+</head>
+<body>
+
+    <div class="header">
+        <h1>NATIONAL FORENSIC SCIENCE UNIVERSITY</h1>
+        <h2>Dharwad Campus, Karnataka 580011</h2>
+        <h3>Leave Requests Summary</h3>
+    </div>
+
+    <div class="summary-container">
+        <div class="summary-box" id="approved-box">
+            <h4>Approved Requests</h4>
+            <p id="approvedRequests">0</p>
+        </div>
+        <div class="summary-box" id="rejected-box">
+            <h4>Rejected Requests</h4>
+            <p id="rejectedRequests">0</p>
+        </div>
+    </div>
+
+    <!-- Return to home button -->
+    <div class="button-container">
+        <button onclick="window.location.href='facdashboard.html'">Return to Home</button>
+    </div>
+
+</body>
+</html>

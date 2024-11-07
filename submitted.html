@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Application Submitted</title>
+    <link rel="stylesheet" href="submitted.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+    function formatDate(date) {
+        return date.toISOString().split('T')[0];
+    }
+
+    // Function to generate and download the formatted PDF
+    function downloadPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        const currentDate = new Date();
+        const formattedDate = formatDate(currentDate);
+
+        // Retrieve stored leave application data from localStorage
+        const leaveData = JSON.parse(localStorage.getItem('leaveData')) || {};
+
+        // Title: National Forensic Science University, Dharwad in red, bold, and boxed
+        doc.setTextColor(255, 0, 0);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(16);
+        doc.text('National Forensic Science University, Dharwad', 105, 20, { align: "center" });
+        doc.rect(15, 10, 180, 15); // Draw a rectangle around the title
+
+        // Subheading: Leave Application Form
+        doc.setTextColor(0, 0, 0);
+        doc.setFont("times", "normal");
+        doc.setFontSize(14);
+        doc.text('Leave Application Form', 105, 40, { align: "center" });
+
+        // Current status: (example status, this can be dynamically updated)
+        const status = "Under Process"; // You can change this to "Accepted" or "Rejected"
+        doc.text(`Current Status: ${status}`, 105, 50, { align: "center" });
+
+        // Move down for the form details
+        doc.setFontSize(12);
+        let yOffset = 65;
+
+        // Form Data: Label in bold and user input in Times New Roman
+        doc.setFont("times", "bold");
+        doc.text('Name:', 20, yOffset);
+        doc.setFont("times", "normal");
+        doc.text(leaveData.name || 'N/A', 60, yOffset);
+
+        yOffset += 10;
+        doc.setFont("times", "bold");
+        doc.text('Department:', 20, yOffset);
+        doc.setFont("times", "normal");
+        doc.text(leaveData.dept || 'N/A', 60, yOffset);
+
+        yOffset += 10;
+        doc.setFont("times", "bold");
+        doc.text('Hostel:', 20, yOffset);
+        doc.setFont("times", "normal");
+        doc.text(leaveData.hostel || 'N/A', 60, yOffset);
+
+        yOffset += 10;
+        doc.setFont("times", "bold");
+        doc.text('Apartment:', 20, yOffset);
+        doc.setFont("times", "normal");
+        doc.text(leaveData.apartment || 'N/A', 60, yOffset);
+
+        yOffset += 10;
+        doc.setFont("times", "bold");
+        doc.text('Room:', 20, yOffset);
+        doc.setFont("times", "normal");
+        doc.text(leaveData.room || 'N/A', 60, yOffset);
+
+        yOffset += 10;
+        doc.setFont("times", "bold");
+        doc.text('Enrollment No.:', 20, yOffset);
+        doc.setFont("times", "normal");
+        doc.text(leaveData.enroll || 'N/A', 60, yOffset);
+
+        yOffset += 10;
+        doc.setFont("times", "bold");
+        doc.text('Year of Study:', 20, yOffset);
+        doc.setFont("times", "normal");
+        doc.text(leaveData.year || 'N/A', 60, yOffset);
+
+        yOffset += 10;
+        doc.setFont("times", "bold");
+        doc.text('Phone No.:', 20, yOffset);
+        doc.setFont("times", "normal");
+        doc.text(leaveData.phone || 'N/A', 60, yOffset);
+
+        yOffset += 10;
+        doc.setFont("times", "bold");
+        doc.text('Parent\'s Phone No.:', 20, yOffset);
+        doc.setFont("times", "normal");
+        doc.text(leaveData.parentPhone || 'N/A', 60, yOffset);
+
+        yOffset += 10;
+        doc.setFont("times", "bold");
+        doc.text('Leave Reason:', 20, yOffset);
+        doc.setFont("times", "normal");
+        doc.text(leaveData.reason || 'N/A', 60, yOffset);
+
+        yOffset += 10;
+        doc.setFont("times", "bold");
+        doc.text('Leave Date:', 20, yOffset);
+        doc.setFont("times", "normal");
+        doc.text(leaveData.leaveDate || 'N/A', 60, yOffset);
+
+        yOffset += 10;
+        doc.setFont("times", "bold");
+        doc.text('Return Date:', 20, yOffset);
+        doc.setFont("times", "normal");
+        doc.text(leaveData.returnDate || 'N/A', 60, yOffset);
+
+        yOffset += 10;
+        doc.setFont("times", "bold");
+        doc.text('Address of Place:', 20, yOffset);
+        doc.setFont("times", "normal");
+        doc.text(leaveData.address || 'N/A', 60, yOffset);
+
+        yOffset += 10;
+        doc.setFont("times", "bold");
+        doc.text('Outside Hubli/Dharwad:', 20, yOffset);
+        doc.setFont("times", "normal");
+        doc.text(leaveData.outside || 'N/A', 60, yOffset);
+
+        // Save the PDF with a dynamic filename based on the date
+        doc.save(`Leave_Application_${formattedDate}.pdf`);
+    }
+
+    // Display current date and time on page load
+    window.onload = function () {
+        const dateTimeElement = document.getElementById("submissionTime");
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleString();
+        dateTimeElement.textContent = formattedDate;
+    };
+    </script>
+
+</head>
+<body>
+    <div class="header">
+        <h1>NATIONAL FORENSIC SCIENCE UNIVERSITY</h1>
+        <h2>Dharwad Campus, Karnataka 580011</h2>
+    </div>
+
+    <div class="form-container">
+        <h3>Your request is submitted on</h3>
+        <p id="submissionTime"></p>
+        <h4>Waiting for confirmation...</h4>
+        
+        <!-- Button to download the PDF -->
+        <button onclick="downloadPDF()">Download Leave Application as PDF</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Leave Request</title>
+    <link rel="stylesheet" href="emergencyleave.css">
+    <script>
+        function toggleOtherReason() {
+            const reasonSelect = document.getElementById("reason");
+            const otherReasonInput = document.getElementById("other-reason");
+            
+            // Show input field if 'Other' is selected
+            if (reasonSelect.value === "other") {
+                otherReasonInput.style.display = "block";
+            } else {
+                otherReasonInput.style.display = "none";
+            }
+        }
+
+        function submitForm(event) {
+            event.preventDefault();  // Prevent default form submission behavior
+            
+            const selectedReason = document.getElementById("reason").value;
+            const otherReason = document.getElementById("other-reason").value;
+
+            const finalReason = selectedReason === "other" ? otherReason : selectedReason;
+
+            // Collect the form data
+            const formData = {
+                name: document.getElementById('name').value,
+                gender: document.getElementById('gender').value,
+                hostel: document.getElementById('hostel').value,
+                apartment: document.getElementById('apartment').value,
+                room: document.getElementById('room').value,
+                enroll: document.getElementById('enroll').value,
+                dept: document.getElementById('dept').value,
+                year: document.getElementById('year').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                parentPhone: document.getElementById('parentPhone').value,
+                reason: finalReason, // use the selected or typed reason
+                leaveDate: document.getElementById('leaveDate').value,
+                returnDate: document.getElementById('returnDate').value,
+                remarks: document.getElementById('remarks').value,
+            };
+
+            // Store the form data in localStorage to access it on the submitted.html page
+            localStorage.setItem('leaveData', JSON.stringify(formData));
+
+            // Redirect to the submitted page
+            window.location.href = "submitted.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>NATIONAL FORENSIC SCIENCE UNIVERSITY</h1>
+        <h2>Dharwad Campus, Karnataka 580011</h2>
+    </div>
+
+    <div class="form-container">
+        <h3>Emergency Leave Request</h3>
+
+        <form action="submit" method="post" onsubmit="submitForm(event)">
+            <!-- Student Details -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required autofocus>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+            <label for="hostel">Hostel Number:</label>
+            <select id="hostel" name="hostel" required>
+                <option value="main">Main Building</option>
+                <option value="boys-2">Hostel 5 (2 Occupancy)</option>
+                <option value="behag">Hostel 4 (Behag)</option>
+                <option value="chayyant">Hostel 10 (Hindol)</option>
+                <option value="hindol">Hostel 5 (Chayyant)</option>
+            </select>
+
+            <label for="apartment">Apartment Number:</label>
+            <input type="text" id="apartment" name="apartment" placeholder="e.g., Apartment 4.5" required>
+
+            <label for="room">Room Number:</label>
+            <input type="text" id="room" name="room" placeholder="e.g., 10G4" required>
+
+            <label for="enroll">Enrollment Number:</label>
+            <input type="number" id="enroll" name="enroll" placeholder="12 digit number" required>
+
+            <label for="dept">Department:</label>
+            <select id="dept" name="dept" required>
+                <option value="btech">BTech-MTech (Cyber Security)</option>
+                <option value="bsc">BSc-MSc (Forensic Science)</option>
+                <option value="msc">MSc (Environmental Science)</option>
+            </select>
+
+            <label for="year">Year of Study:</label>
+            <select id="year" name="year" required>
+                <option value="1st">1st Year</option>
+                <option value="2nd">2nd Year</option>
+                <option value="3rd">3rd Year</option>
+                <option value="4th">4th Year</option>
+                <option value="5th">5th Year</option>
+            </select>
+
+            <label for="email">Mail ID:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Personal Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="parentPhone">Parents' Phone Number:</label>
+            <input type="tel" id="parentPhone" name="parentPhone" required>
+
+            <!-- Leave Details -->
+            <h4>Leave Details</h4>
+
+            <label for="reason">Reason for Emergency Leave:</label>
+            <select id="reason" name="reason" required onchange="toggleOtherReason()">
+                <option value="health">Health issues</option>
+                <option value="family">Family emergency</option>
+                <option value="death">Death of a loved one</option>
+                <option value="accident">Accidents</option>
+                <option value="medical">Medical appointments</option>
+                <option value="support">Support for immediate family</option>
+                <option value="other">Other</option>
+            </select>
+
+            <!-- Input for "Other" Reason -->
+            <input type="text" id="other-reason" name="other-reason" placeholder="Please specify" style="display: none;">
+
+            <label for="leaveDate">Date and Time of Leaving:</label>
+            <input type="datetime-local" id="leaveDate" name="leaveDate" required>
+
+            <label for="returnDate">Date and Time of Return:</label>
+            <input type="datetime-local" id="returnDate" name="returnDate" required>
+
+            <label for="remarks">Remarks (if any):</label>
+            <textarea id="remarks" name="remarks" rows="3"></textarea>
+
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="studashboard.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="nfsulogo.png" alt="NFSU Logo" class="logo">
+            <div class="header-text">
+                <h1>Welcome to Student Dashboard</h1>
+                <p class="login-status">Logged in Successfully</p>
+            </div>
+        </div>
+        <div class="contact-info">
+            <p>NOTE: For any query contact:</p>
+            <a href="mailto:nfsu_dharwad@nfsu.ac.in">nfsu_dharwad@nfsu.ac.in</a><br>
+            <a href="tel:9481515684">9481515684</a>
+        </div>
+    </header>
+
+    <section class="dashboard">
+        <div class="leave-section">
+            <h2>Hostel Leave</h2>
+            <div class="card pending">
+                <p>0</p>
+                <p>Total Pending Hostel Leave</p>
+            </div>
+            <div class="card approved">
+                <p>4</p>
+                <p>Total Approved Hostel Leave</p>
+            </div>
+            <div class="card rejected">
+                <p>0</p>
+                <p>Total Rejected Hostel Leave</p>
+            </div>
+            
+            <!-- Request Leave Button -->
+            <button class="request-leave" onclick="window.location.href='leaveapplication.html'">Request Leave</button>
+
+            <!-- Emergency Leave Request Button -->
+            <button class="emergency-leave" onclick="window.location.href='emergencyleave.html'">Emergency Leave Request</button>
+        </div>
+
+        <div class="calendar-container">
+            <h2>Academic Calendar</h2>
+            <!-- Embed Google Calendar -->
+            <iframe src="https://calendar.google.com/calendar/embed?src=9427cbd2fd4c6698671714e34fa45cd32cadb41b297407e4ec488ada287fdd6e%40group.calendar.google.com&ctz=Asia%2FKolkata" 
+            style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </section>
+</body>
+</html>

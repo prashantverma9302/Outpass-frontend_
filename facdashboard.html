@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard | National Forensic Science University</title>
+    <link rel="stylesheet" href="facdashboard.css">
+</head>
+<body>
+    <!-- Main container -->
+    <div class="container">
+        <!-- Header Section with Logo and Title -->
+        <div class="header-container">
+            <img src="nfsulogo.png" alt="NFSU Logo" class="logo">
+            <h1>National Forensic Science University, Dharwad Campus</h1>
+        </div>
+
+        <!-- Dashboard with buttons and calendar -->
+        <div class="dashboard">
+            <!-- Button Section -->
+            <div class="button-section">
+                <button class="btn leave-requests" onclick="window.location.href='adminreqdash.html'">Leave Requests</button>
+                <button class="btn emergency-leave" onclick="window.location.href='emergency-leave.html'">Emergency Leave Request</button>
+                <button class="btn timetable" onclick="window.location.href='yet.html'">Timetable</button>
+            </div>
+
+            <!-- Calendar Section -->
+            <div class="calendar-container">
+                <h2>Academic Calendar</h2>
+                <!-- Embed Google Calendar -->
+                <iframe src="https://calendar.google.com/calendar/embed?src=9427cbd2fd4c6698671714e34fa45cd32cadb41b297407e4ec488ada287fdd6e%40group.calendar.google.com&ctz=Asia%2FKolkata" 
+                style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>&copy; 2024 National Forensic Science University. All rights reserved.</p>
+    </div>
+</body>
+</html>
