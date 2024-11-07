@@ -1,0 +1,178 @@
+/* General container styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa; /* Light background for elegance */
+    color: #333; /* Dark text for contrast */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Ensure body fills the full height of the screen */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Center container with responsive padding */
+.container {
+    max-width: 1200px; /* Limit the width of the container */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Padding around the container */
+    flex: 1; /* Allow container to grow and fill page height */
+}
+
+/* Header Styles */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #e0effe; /* Soft blue header */
+    border-bottom: 2px solid #a1c6ed; /* Slightly darker border */
+}
+
+.header-container img.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.header-container h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+/* Login status button */
+.login-status {
+    background-color: #66bbff; /* Light blue */
+    color: white;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.contact-info {
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.contact-info a {
+    color: #008cba; /* Softer blue for links */
+    text-decoration: none;
+}
+
+/* Dashboard Styles */
+.dashboard {
+    display: flex;
+    justify-content: space-between; /* Space out sections */
+    align-items: flex-start; /* Align items at the start */
+    padding: 20px;
+    gap: 40px; /* Space between sections */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+/* Leave Section */
+.leave-section {
+    width: 45%; /* Make leave section take 45% of the width */
+    text-align: center;
+    background-color: #ffffff; /* White background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #004d80; /* Darker blue for headings */
+}
+
+.card {
+    background-color: #d9e6f2; /* Light blue for cards */
+    border-radius: 10px;
+    padding: 10px; /* Smaller padding */
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px; /* Smaller font size */
+    font-weight: bold;
+}
+
+/* Colors for each card */
+.card.pending {
+    background-color: #ffeb3b; /* Light yellow for pending */
+}
+
+.card.approved {
+    background-color: #a5d6a7; /* Light green for approved */
+}
+
+.card.rejected {
+    background-color: #ef5350; /* Light red for rejected */
+}
+
+/* Adjusted button styles */
+button {
+    padding: 12px 24px; /* Larger button */
+    font-size: 16px; /* Font size for button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+    width: 100%; /* Full-width buttons */
+}
+
+button.request-leave {
+    background-color: #008CBA; /* Light blue button */
+    color: white;
+}
+
+button.request-leave:hover {
+    background-color: #005f73; /* Darker blue on hover */
+}
+
+button.emergency-leave {
+    background-color: #e60000; /* Emergency red */
+    color: white;
+}
+
+button.emergency-leave:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+/* Calendar Section */
+.calendar-container {
+    width: 45%; /* Make calendar section take 45% of the width */
+    background-color: #ffffff; /* White background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center;
+}
+
+.calendar-container iframe {
+    border: none;
+    width: 100%; /* Responsive calendar */
+    height: 400px; /* Adjusted height */
+}
+
+/* General card spacing and layout */
+.card p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.disclaimer {
+    margin: 20px auto;
+    text-align: center;
+    width: 80%;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.footer {
+    background-color: #e0effe;
+    padding: 10px;
+    text-align: center;
+    border-top: 2px solid #a1c6ed;
+    font-size: 14px;
+}

@@ -1,0 +1,46 @@
+/* General body styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa; /* Light background for elegance */
+    color: #333; /* Dark text for contrast */
+    height: 100vh; /* Full screen height */
+    display: flex;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+}
+
+/* Main container */
+.container {
+    text-align: center;
+}
+
+/* Header styles */
+.header {
+    margin-bottom: 30px;
+}
+
+.header img.logo {
+    width: 100px;
+    height: auto;
+}
+
+.header h1 {
+    font-size: 24px;
+    color: #154360; /* Dark blue for the university name */
+    margin: 10px 0;
+}
+
+/* Main content styles */
+.content h2 {
+    font-size: 36px;
+    color: #1f618d; /* Dark blue for title */
+    margin-bottom: 20px;
+}
+
+.coming-soon {
+    font-size: 48px; /* Large text size */
+    font-weight: bold;
+    color: #e74c3c; /* Bright red for emphasis */
+}

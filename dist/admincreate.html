@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FACULTY - Create Account</title>
+    <link rel="stylesheet" href="admincreate.css">
+    <script>
+        function validateFacultyPassword() {
+            var password = document.getElementById("facultyPassword").value;
+            var confirmPassword = document.getElementById("confirmFacultyPassword").value;
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false; // Stop form submission
+            }
+            return true; // Proceed with form submission
+        }
+
+        function handleSubmit(event) {
+            if (!validateFacultyPassword()) {
+                event.preventDefault(); // Prevent form submission if validation fails
+            } else {
+                // Redirect to homelogin.html if validation passes
+                window.location.href = "homelogin.html"; 
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+            <div class="logo-container">
+                <img src="nfsulogo.png" alt="NFSU Logo" class="logo">
+                <div class="header-text">
+        <h1>NATIONAL FORENSIC SCIENCE UNIVERSITY</h1>
+        <h2>Dharwad Campus, Karnataka 580011</h2>
+    </div>
+
+    <div class="form-container">
+        <h3>CREATE FACULTY ACCOUNT</h3>
+        <form class="addFacDoc" action="submit" method="post">
+            <!-- Name -->
+            <label for="facultyName">Name:</label>
+            <input type="text" id="facultyName" name="facultyName" required autofocus>
+
+            <!-- Department -->
+            <label for="facultyDept">Department:</label>
+            <input type="text" id="facultyDept" name="facultyDept" required>
+
+            <!-- Faculty ID -->
+            <label for="facultyID">Faculty ID Number:</label>
+            <input type="number" id="facultyID" name="facultyID" required>
+
+            <!-- Phone Number -->
+            <label for="facultyPhone">Phone Number:</label>
+            <input type="tel" id="facultyPhone" name="facultyPhone" required>
+
+            <!-- Email -->
+            <label for="facultyEmail">Email:</label>
+            <input type="email" id="facultyEmail" name="facultyEmail" required>
+
+            <!-- Password -->
+            <label for="facultyPassword">Create Password:</label>
+            <input type="password" id="facultyPassword" name="facultyPassword" required required pattern="{8-16}">
+
+            <!-- Confirm Password -->
+            <label for="confirmFacultyPassword">Confirm Password:</label>
+            <input type="password" id="confirmFacultyPassword" name="confirmFacultyPassword" required required pattern="{8-16}">
+
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="./faculty_create.bundle.js"></script>
+</body>
+</html>
