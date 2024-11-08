@@ -15,6 +15,8 @@ module.exports = {
         faclogin: './src/faclogin.js',
         facsignup: './src/facsignup.js',
         signup: './src/signup.js',
+        adminreqdash: './src/adminreqdash.js',
+        facdashboard: './src/facdashboard.js',
 
     },
     output: {

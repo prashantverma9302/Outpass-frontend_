@@ -5,43 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Leave Request Dashboard</title>
     <link rel="stylesheet" href="adminreqdash.css">
+
     <script>
-        // Sample leave data
-        const leaveData = [
-            { name: 'Divyashree Alagusundram', department: 'BTech-MTech (Cyber Security)', year: '2nd Year', duration: 5, reason: 'Personal reasons' },
-            { name: 'Samyuktaa Venkatesan', department: 'MSc (Environmental Science)', year: '1st Year', duration: 13, reason: 'Medical emergency' },
-            { name: 'Jonah', department: 'BTech-MTech (Cyber Security)', year: '2nd Year', duration: 2, reason: 'Conference' },
-            { name: 'Mirunalini', department: 'MSc (Environmental Science)', year: '2nd Year', duration: 18, reason: 'Family visit' },
-            { name: 'Prashant', department: 'BTech-MTech (Cyber Security)', year: '4th Year', duration: 12, reason: 'Family function' },
-            {name: 'Vyaahruthi', department: 'BSc-MSc (Forensic Science)', year: '3rd Year', duration: 8, reason: 'Family function' },
-            { name: 'Amruth', department: 'BSc-MSc (Forensic Science)', year: '2nd Year', duration: 4, reason: 'Medical checkup' },
-            { name: 'Aayush', department: 'BTech-MTech (Cyber Security)', year: '1st Year', duration: 6, reason: 'Outstation visit' },
-            { name: 'Hari Om', department: 'MSc (Environmental Science)', year: '1st Year', duration: 14, reason: 'Research work' },
-            { name: 'Ruthwik Bellary', department: 'BSc-MSc (Forensic Science)', year: '5th Year', duration: 3, reason: 'Internship' },
-            { name: 'Kevin', department: 'BSc-MSc (Forensic Science)', year: '4th Year', duration: 3, reason: 'Sick Leave' }
+        // // Sample leave data
+        // const leaveData = [
+        //     { name: 'Divyashree Alagusundram', department: 'BTech-MTech (Cyber Security)', year: '2nd Year', duration: 5, reason: 'Personal reasons' },
+        //     { name: 'Samyuktaa Venkatesan', department: 'MSc (Environmental Science)', year: '1st Year', duration: 13, reason: 'Medical emergency' },
+        //     { name: 'Jonah', department: 'BTech-MTech (Cyber Security)', year: '2nd Year', duration: 2, reason: 'Conference' },
+        //     { name: 'Mirunalini', department: 'MSc (Environmental Science)', year: '2nd Year', duration: 18, reason: 'Family visit' },
+        //     { name: 'Prashant', department: 'BTech-MTech (Cyber Security)', year: '4th Year', duration: 12, reason: 'Family function' },
+        //     {name: 'Vyaahruthi', department: 'BSc-MSc (Forensic Science)', year: '3rd Year', duration: 8, reason: 'Family function' },
+        //     { name: 'Amruth', department: 'BSc-MSc (Forensic Science)', year: '2nd Year', duration: 4, reason: 'Medical checkup' },
+        //     { name: 'Aayush', department: 'BTech-MTech (Cyber Security)', year: '1st Year', duration: 6, reason: 'Outstation visit' },
+        //     { name: 'Hari Om', department: 'MSc (Environmental Science)', year: '1st Year', duration: 14, reason: 'Research work' },
+        //     { name: 'Ruthwik Bellary', department: 'BSc-MSc (Forensic Science)', year: '5th Year', duration: 3, reason: 'Internship' },
+        //     { name: 'Kevin', department: 'BSc-MSc (Forensic Science)', year: '4th Year', duration: 3, reason: 'Sick Leave' }
 
-        ];
+        // ];
 
-        // Function to render the table based on sorting
-        function renderTable(data) {
-            const tableBody = document.getElementById('leaveTableBody');
-            tableBody.innerHTML = '';  // Clear existing table rows
-
-            data.forEach((student, index) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td><input type="checkbox" class="approve-checkbox" checked></td>
-                    <td>${index + 1}</td>
-                    <td>${student.name}</td>
-                    <td>${student.department}</td>
-                    <td>${student.year}</td>
-                    <td>${student.duration} hours</td>
-                    <td>${student.reason}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
+        
         // Sorting function
         function sortData(option) {
             let sortedData;
@@ -67,6 +49,12 @@
             renderTable(sortedData);
         }
 
+
+        // Select all function
+        function selectAll(checkbox) {
+            const checkboxes = document.querySelectorAll('.approve-checkbox');
+            checkboxes.forEach(cb => cb.checked = checkbox.checked);
+        }
         // Approve all function
         function approveAll() {
             const checkboxes = document.querySelectorAll('.approve-checkbox');
@@ -89,16 +77,7 @@
             window.location.href = 'adminreqcomp.html';
         }
 
-        // Select all function
-        function selectAll(checkbox) {
-            const checkboxes = document.querySelectorAll('.approve-checkbox');
-            checkboxes.forEach(cb => cb.checked = checkbox.checked);
-        }
 
-        // On page load, render table
-        window.onload = function () {
-            renderTable(leaveData);  // Initial render
-        };
     </script>
 </head>
 <body>
@@ -117,14 +96,14 @@
     </div>
 
     <div class="table-container">
-        <label for="sortOptions">Sort by:</label>
+        <!-- <label for="sortOptions">Sort by:</label>
         <select id="sortOptions" onchange="sortData(this.value)">
             <option value="alphabetical">Alphabetical</option>
             <option value="department">Department</option>
             <option value="year">Year of Study</option>
             <option value="duration">Duration</option>
             <option value="oldest">Oldest Request</option>
-        </select>
+        </select> -->
 
         <!-- Select all checkbox -->
         <div>
@@ -133,16 +112,20 @@
         </div>
 
         <!-- Leave Requests Table -->
-        <table>
+        <table id="reqTable">
             <thead>
                 <tr>
                     <th></th>
+                    <th style="display: none;">stud_id</th>
                     <th>#</th>
                     <th>Name</th>
                     <th>Department</th>
                     <th>Year</th>
-                    <th>Duration</th>
-                    <th>Reason for Leave</th>
+                    <th>Leave Date-Time</th>
+                    <th>Return Date-Time</th>
+                    <th>Reason For Leave</th>
+                    <th>Location</th>
+                    <th>Remarks</th>
                 </tr>
             </thead>
             <tbody id="leaveTableBody">
@@ -153,6 +136,6 @@
         <!-- Approve all button -->
         <button onclick="approveAll()">Approve All</button>
     </div>
-
+    <script src="adminreqdash.bundle.js"></script>
 </body>
 </html>

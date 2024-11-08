@@ -36,16 +36,19 @@ document.getElementById("rand").addEventListener("click", async function (e) {
         const q = query(colRef_users,where('email_id','==', `${email}`)) ;
         onSnapshot(q,(snapshot) => {
 
-            let requests = []
+            let details = []
             console.log(snapshot)
             snapshot.docs.forEach((doc) => {
-                requests.push({...doc.data(), id: doc.id })
+                details.push({...doc.data(), id: doc.id, uid: user.uid })
             })
-            console.log(requests)
-            if (requests[0].role === 'stud'){
-                console.log("Yes")
+            console.log(details)
+            if (details[0].role === 'stud'){
+                // console.log(details[0].uid)
+                sessionStorage.clear()
+                sessionStorage.setItem('user_details',JSON.stringify(details[0]))
+
                 // Redirect to homepage or another page
-                console.log(user.uid)
+                // console.log(user.uid)
                 window.location.href = "studashboard.html";
 
             }

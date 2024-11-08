@@ -63,6 +63,17 @@ eval("/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org
 
 /***/ }),
 
+/***/ "./src/adminreqdash.js":
+/*!*****************************!*\
+  !*** ./src/adminreqdash.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ \"./node_modules/firebase/app/dist/esm/index.esm.js\");\n/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/firestore */ \"./node_modules/firebase/firestore/dist/esm/index.esm.js\");\n/* harmony import */ var _firebase_config_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./firebase-config.js */ \"./src/firebase-config.js\");\n\r\n\r\n\r\n//init firebase\r\n(0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(_firebase_config_js__WEBPACK_IMPORTED_MODULE_2__.firebaseConfig)\r\n\r\n// init services\r\nconst db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getFirestore)()\r\n\r\n// collection ref\r\nconst colRef_requests = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db,'requests')\r\n\r\nvar requests = JSON.parse(sessionStorage.getItem('requests'))\r\nconsole.log(requests)\r\n\r\nvar leaveData = requests\r\nconst tableBody = document.getElementById('leaveTableBody');\r\n\r\n// Function to render the table based on sorting\r\nfunction renderTable(data) {\r\n\r\n    tableBody.innerHTML = '';  // Clear existing table rows\r\n\r\n    data.forEach((student, index) => {\r\n        const row = document.createElement('tr');\r\n        row.innerHTML = `\r\n            <td><input type=\"checkbox\" class=\"approve-checkbox\" checked></td>\r\n            <td style=\"display: none;\">${student.id}</td>\r\n            <td>${index+1}</td>\r\n            <td>${student.name}</td>\r\n            <td>${student.dept}</td>\r\n            <td>${student.year}</td>\r\n            <td>${student.leaveDateTime}</td>\r\n            <td>${student.returnDateTime}</td>\r\n            <td>${student.reason}</td>\r\n            <td>${student.location}</td>\r\n            <td>${student.remarks}</td>\r\n\r\n        `;\r\n        tableBody.appendChild(row);\r\n    });\r\n}\r\n\r\n//function for approving selected requests\r\n\r\nfunction approveRequests(){\r\n\r\n    // checking selections\r\n    const table = document.getElementById('leaveTableBody')\r\n    const rows = table.rows\r\n    rows.forEach((row)=>{\r\n        if(row[0].checked === true){\r\n            console.log(\"yes\")\r\n        }\r\n    })\r\n\r\n}\r\n\r\n\r\n\r\n\r\n// On page load, render table\r\nwindow.onload = function () {\r\n    renderTable(leaveData);  // Initial render\r\n};\n\n//# sourceURL=webpack://outpass/./src/adminreqdash.js?");
+
+/***/ }),
+
 /***/ "./src/firebase-config.js":
 /*!********************************!*\
   !*** ./src/firebase-config.js ***!
@@ -71,17 +82,6 @@ eval("/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   firebaseConfig: () => (/* binding */ firebaseConfig)\n/* harmony export */ });\n// Firebase configuration only\r\nconst firebaseConfig = {\r\n    apiKey: \"AIzaSyDfNO-FtO428UCS8ujMAXk0CD95qXOlFzc\",\r\n    authDomain: \"out-pass-61ee5.firebaseapp.com\",\r\n    databaseURL: \"https://out-pass-61ee5-default-rtdb.firebaseio.com\",\r\n    projectId: \"out-pass-61ee5\",\r\n    storageBucket: \"out-pass-61ee5.appspot.com\",\r\n    messagingSenderId: \"775161528345\",\r\n    appId: \"1:775161528345:web:c1be1f72458af0f2946a88\",\r\n    measurementId: \"G-9P7X8F8KPF\"\r\n  };\r\n  \n\n//# sourceURL=webpack://outpass/./src/firebase-config.js?");
-
-/***/ }),
-
-/***/ "./src/leave_form.js":
-/*!***************************!*\
-  !*** ./src/leave_form.js ***!
-  \***************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ \"./node_modules/firebase/app/dist/esm/index.esm.js\");\n/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/firestore */ \"./node_modules/firebase/firestore/dist/esm/index.esm.js\");\n/* harmony import */ var _firebase_config_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./firebase-config.js */ \"./src/firebase-config.js\");\n\r\n\r\n\r\n\r\n//init firebase\r\n(0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(_firebase_config_js__WEBPACK_IMPORTED_MODULE_2__.firebaseConfig)\r\n\r\n// init services\r\nconst db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getFirestore)()\r\n\r\n// collection ref\r\nconst colRef_requests = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db,'requests')\r\nvar dets = sessionStorage.getItem('user_details')\r\nconst user_details = JSON.parse(dets)\r\nconsole.log(user_details.uid)\r\n\r\n// function submitForm(event) {\r\n//     event.preventDefault();  // Prevent default form submission behavior\r\n    \r\n\r\n// }\r\n\r\n// Add document\r\n\r\nconst addRequestForm = document.querySelector('.leave-form')\r\naddRequestForm.addEventListener('submit', (e) => {\r\n    e.preventDefault()\r\n\r\n    ;(0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.addDoc)(colRef_requests, {\r\n        name: document.getElementById('name').value,\r\n        location: document.getElementById('address').value,\r\n        reason: document.getElementById('reason').value,\r\n        leaveDateTime: document.getElementById('leaveDate').value,\r\n        returnDateTime: document.getElementById('returnDate').value,\r\n        remarks: document.getElementById('remarks').value,\r\n        dept: document.getElementById('dept').value,\r\n        year: document.getElementById('year').value, \r\n        hostel: document.getElementById('hostel').value,\r\n        appartment: document.getElementById('appartment').value,\r\n        emergency: false,\r\n        status: \"pending\",\r\n        stud_id: `${user_details.uid}`,\r\n        app_date: \"\"\r\n    })\r\n\r\n    // Collect the form data\r\n    const formData = {\r\n        name: document.getElementById('name').value,\r\n        gender: document.getElementById('gender').value,\r\n        hostel: document.getElementById('hostel').value,\r\n        apartment: document.getElementById('appartment').value,\r\n        room: document.getElementById('room').value,\r\n        enroll: document.getElementById('enroll').value,\r\n        dept: document.getElementById('dept').value,\r\n        year: document.getElementById('year').value,\r\n        email: document.getElementById('email').value,\r\n        phone: document.getElementById('phone').value,\r\n        parentPhone: document.getElementById('parentPhone').value,\r\n        outside: document.querySelector('input[name=\"outside\"]:checked').value,\r\n        address: document.getElementById('address').value,\r\n        reason: document.getElementById('reason').value,\r\n        leaveDate: document.getElementById('leaveDate').value,\r\n        returnDate: document.getElementById('returnDate').value,\r\n        remarks: document.getElementById('remarks').value,\r\n    };\r\n\r\n    // Store the form data in localStorage to access it on the submitted.html page\r\n    localStorage.setItem('leaveData', JSON.stringify(formData));\r\n\r\n    //clear the form\r\n    addRequestForm.reset()\r\n\r\n    // Redirect to the submitted page\r\n    window.location.href = \"submitted.html\";\r\n    // submitForm(e)\r\n    // window.location.href = \"studashboard.html\";\r\n\r\n\r\n\r\n})\r\n\r\n\n\n//# sourceURL=webpack://outpass/./src/leave_form.js?");
 
 /***/ }),
 
@@ -256,7 +256,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/leave_form.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/adminreqdash.js");
 /******/ 	
 /******/ })()
 ;

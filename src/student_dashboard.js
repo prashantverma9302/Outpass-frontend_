@@ -2,7 +2,8 @@ import {
     initializeApp
 } from 'firebase/app'
 import {
-    getFirestore,collection,getDocs,onSnapshot
+    getFirestore,collection,getDocs,onSnapshot,
+    query,where
 } from 'firebase/firestore'
 import { firebaseConfig } from "./firebase-config.js";
 //init firebase
@@ -45,8 +46,12 @@ const colRef_requests = collection(db,'requests')
 //     .catch(err => {
 //         console.log(err.message)
 //     })
+var dets = sessionStorage.getItem('user_details')
+const user_details = JSON.parse(dets)
+console.log(user_details.uid)
+const q = query(colRef_requests,where('stud_id','==',`${user_details.uid}`))
 
-onSnapshot(colRef_requests,(snapshot) => {
+onSnapshot(q,(snapshot) => {
     var cnt_pend = 0
     var cnt_app  = 0
     var cnt_rej = 0

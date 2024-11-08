@@ -16,6 +16,7 @@ const db = getFirestore()
 
 // collection ref
 const colRef_users = collection(db,'users')
+const colRef_requests = collection(db,'requests')
 
 
 
@@ -34,32 +35,32 @@ document.getElementById("rand1").addEventListener("click", async function (e) {
     const password = document.getElementById("facultyPassword").value;
     
 
-
-
-
     try{
         const userCredential=await signInWithEmailAndPassword(auth,email,password);
-
         const user = userCredential.user;
+
         const q = query(colRef_users,where('email_id','==', `${email}`)) ;
-        onSnapshot(q,(snapshot) => {
+        onSnapshot(q,(snapshot) => {  //function to verify role of user and redirect based on it
 
             let requests = []
             console.log(snapshot)
             snapshot.docs.forEach((doc) => {
-                requests.push({...doc.data(), id: doc.id })
+                requests.push({...doc.data(), id: doc.id , uid: user.uid })
             })
             console.log(requests)
             if (requests[0].role === 'admin'){
                 console.log("Yes")
+                // Redirect to homepage
                 window.location.href = "facdashboard.html";
             }
 
             else{
                 alert("Credentials Not Verified!!")
+                window.location.href = "homelogin.html";
             }
         })
-        // Redirect to homepage or another page
+
+
 
     }catch(error){
         const errorCode = error.code;
