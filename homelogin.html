@@ -18,15 +18,20 @@
                 facultyForm.style.display = "flex";
             }
         }
-    </script>
-    <!-- Add Firebase SDKs in the head section of your HTML file -->
-    <script type="module" src="firebase-config.js"></script>
-    <script type="module" src="login.js"></script>
-    <script type="module" src="faclogin.js"></script>
 
+        function togglePassword(passwordId) {
+            const passwordField = document.getElementById(passwordId);
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="header">
+        <img src="nfsulogo.png" alt="NFSU Logo" class="logo">
         <h1>NATIONAL FORENSIC SCIENCE UNIVERSITY</h1>
         <h2>Dharwad Campus, Karnataka 580011</h2>
     </div>
@@ -45,26 +50,30 @@
 
             <!-- Student Form -->
             <div id="studentForm" class="login-form" style="display: none;">
-                <label for="email">Email id:</label>
-                <input type="text" id="email1" name="email" placeholder="Enter your Email" required>
+                <label for="enroll">Enrollment Number:</label>
+                <input type="text" id="enroll" name="enroll" placeholder="Enter Enrollment Number" required>
 
-                <label for="password">Password:</label>
-                <input type="password" id="password1" name="password" required>
-                <button type="button" id="rand">Login</button>
+                <label for="studentPassword">Password:</label>
+                <div class="password-wrapper">
+                    <input type="password" id="studentPassword" name="studentPassword" required>
+                    <img src="eye.png" alt="Show Password" class="eye-icon" onclick="togglePassword('studentPassword')">
+                </div>
             </div>
 
             <!-- Faculty Form -->
             <div id="facultyForm" class="login-form" style="display: none;">
-                <label for="facultyMail">Faculty Mail id:</label>
-                <input type="text" id="facultyMail" name="facultyMail" placeholder="Enter Faculty Mail id" required>
+                <label for="facultyID">Faculty ID Number:</label>
+                <input type="text" id="facultyID" name="facultyID" placeholder="Enter Faculty ID Number" required>
 
                 <label for="facultyPassword">Password:</label>
-                <input type="password" id="facultyPassword" name="facultyPassword" required>
-                <button type="button" id="rand1">Login</button>
+                <div class="password-wrapper">
+                    <input type="password" id="facultyPassword" name="facultyPassword" required>
+                    <img src="eye.png" alt="Show Password" class="eye-icon" onclick="togglePassword('facultyPassword')">
+                </div>
             </div>
 
             <!-- Submit Button -->
-            
+            <button type="submit">Login</button>
         </form>
     </div>
 </body>
